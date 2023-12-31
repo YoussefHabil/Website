@@ -30,3 +30,6 @@ header{
     font-weight: 500;
     padding-left: 25px;
  }
+ a:hover {
+    color: rgb(255, 0, 140);
+  }
