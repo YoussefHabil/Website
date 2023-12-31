@@ -16,3 +16,10 @@ header{
     align-items: center;
     padding : 10px 100px;
 }
+.logo{
+    text-decoration:none;
+    color:blue;
+    text-transform:uppercase;
+    font-weight:700;
+    font-size: 1.8em;
+}
