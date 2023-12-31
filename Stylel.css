@@ -47,3 +47,8 @@ header{
     background-attachment: fixed;
 
   }
+  .main h2{
+    color: aquamarine;
+    font-size: 1.4em;
+    font-weight: 500;
+  }
