@@ -42,5 +42,8 @@ header{
     display:flex;
     align-items: center;
     background: url(Images/KING.png) no-repeat;
+    background-size: cover;
+    background-position: top;
+    background-attachment: fixed;
 
   }
