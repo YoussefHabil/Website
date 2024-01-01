@@ -18,13 +18,13 @@ header{
 }
 .logo{
     text-decoration:none;
-    color:blue;
+    color:rgb(0, 255, 221);
     text-transform:uppercase;
     font-weight:700;
     font-size: 1.8em;
 }
 .navigation a{
-    color:blue;
+    color:rgb(0, 0, 255);
     text-decoration: none;
     font-size: 1.1em;
     font-weight: 500;
@@ -56,7 +56,7 @@ header{
     display:inline-block;
     margin-top: 10px;
     color:aqua;
-    font: size 3em;
+    font-size:  3em;
     font-weight: 600;
   }
   .main h3{
@@ -66,4 +66,18 @@ header{
     letter-spacing: 1px;
     margin-top: 10px;
     margin-bottom: 30px;
+    margin-right:50px;
+    margin-left:80px;
+    text-wrap:nowrap;
+  }
+  .social-media-icons{
+    font-size:2em;
+    text-wrap:nowrap;
+  }
+  .main-button{
+    font-size: 1.4em;
+    justify-content: space-between;
+    text-wrap:nowrap;
+    color:rgb(255, 222, 73);
+    margin-right:10px;
   }
