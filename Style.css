@@ -41,7 +41,7 @@ header{
     min-height: 100vh;
     display:flex;
     align-items: center;
-    background: url(Images/KING.png) no-repeat;
+    background: transparent url(Images/KING.png) no-repeat;
     background-size: cover;
     background-position: top;
     background-attachment: fixed;
