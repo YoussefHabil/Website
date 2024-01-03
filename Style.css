@@ -123,7 +123,7 @@ header{
   .card{
     background-color: #f0f0f0;
     width:21.25em;
-    border-radius: 10px;
+    border-radius: 50px;
     box-shadow: 0 5px 35px rgba(1 1 1 /25%);
     padding: 20px;
     margin:15px;
