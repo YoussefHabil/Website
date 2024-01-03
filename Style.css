@@ -51,6 +51,7 @@ header{
     background-position: top;
     background-attachment: fixed;
 
+
   }
   .main h2{
     color: aquamarine;
@@ -73,7 +74,7 @@ header{
     margin-top: 450px;
     margin-bottom: 30px;
     margin-right:30px;
-    margin-left:80px;
+    margin-left:50px;
     text-wrap:nowrap;
   }
   .social-media-icons{
@@ -81,7 +82,7 @@ header{
   }
   .social-media-icons a{
     color: #f0f0f0;
-    font-size: 1.7em;
+    font-size: 2em;
     padding-right: 10px;
   }
   .social-media-icons a:hover  {
