@@ -96,8 +96,9 @@ header{
     letter-spacing: 1px;
     margin-bottom: 40px;
     margin-right: 30px;
+    transition: 0.9s ease;
   }
   .main-button:hover{
     background-color: aquamarine;
+    transform:scale(1.08);
   }
-  
