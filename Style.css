@@ -113,4 +113,8 @@ header{
     font-weight: 800;
     margin-bottom: 30px; 
   }
-  
+  .content{
+    display: flex;
+    flex-direction: row;
+    flex-wrap:wrap;
+  }
