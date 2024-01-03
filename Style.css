@@ -28,7 +28,12 @@ header{
     text-decoration: none;
     font-size: 1.1em;
     font-weight: 500;
+    display: inline-block;
     padding-left: 25px;
+ }
+ .navigation a:hover{
+  transform: scale(1.2);
+  transition: 0.4s ease;
  }
  a:hover {
     color: rgb(255, 0, 140);
@@ -71,13 +76,12 @@ header{
     text-wrap:nowrap;
   }
   .social-media-icons{
-    font-size:2em;
     text-wrap:nowrap;
   }
-  .main-button{
-    font-size: 1.4em;
-    justify-content: space-between;
-    text-wrap:nowrap;
-    color:rgb(255, 222, 73);
-    margin-right:10px;
+  .social-media-icons a{
+    color: #f0f0f0;
+    font-size: 1.7em;
+    padding-right: 10px;
   }
+
+  
