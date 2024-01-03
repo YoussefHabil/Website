@@ -130,4 +130,8 @@ header{
   .card:hover{
     transform:scale(1.08);
   }
-
+  .Icon{
+    color: blue;
+    font-size: 8em;
+    text-align: center;
+  }
