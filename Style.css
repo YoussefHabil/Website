@@ -142,4 +142,6 @@ header{
     font-weight: 700;
     margin: 10px;
   }
- 
+  .Info{
+    text-align: center;
+  }
