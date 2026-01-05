@@ -973,7 +973,7 @@ a {
     .nav-links {
         gap: 1rem;
         font-size: 0.85rem;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         justify-content: center;
         margin: 0;
     }
@@ -982,10 +982,30 @@ a {
         display: flex;
         gap: 0.8rem;
         margin: 0;
+        justify-content: center;
     }
 
     .social-icons i {
         font-size: 1rem;
+    }
+
+    /* Combine nav-links and social-icons in one row on mobile */
+    @media (max-width: 900px) {
+        .nav-content {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links {
+            flex: 1;
+            justify-content: center;
+            gap: 0.8rem;
+        }
+
+        .social-icons {
+            gap: 0.6rem;
+        }
     }
 }
 
