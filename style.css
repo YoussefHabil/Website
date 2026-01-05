@@ -965,13 +965,16 @@ a {
     }
 
     .nav-content {
-        flex-direction: column;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
         gap: 0.5rem;
         padding: 0 1rem;
     }
 
     .nav-links {
-        gap: 1rem;
+        flex: 1;
+        gap: 0.8rem;
         font-size: 0.85rem;
         flex-wrap: nowrap;
         justify-content: center;
@@ -980,32 +983,12 @@ a {
 
     .social-icons {
         display: flex;
-        gap: 0.8rem;
+        gap: 0.6rem;
         margin: 0;
-        justify-content: center;
     }
 
     .social-icons i {
         font-size: 1rem;
-    }
-
-    /* Combine nav-links and social-icons in one row on mobile */
-    @media (max-width: 900px) {
-        .nav-content {
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-links {
-            flex: 1;
-            justify-content: center;
-            gap: 0.8rem;
-        }
-
-        .social-icons {
-            gap: 0.6rem;
-        }
     }
 }
 
