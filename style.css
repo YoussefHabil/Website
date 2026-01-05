@@ -820,7 +820,7 @@ a {
     transform: scale(1.1);
 }
 
-/* Responsive Bento */
+/* Responsive Bento & Navbar */
 @media (max-width: 900px) {
     .bento-grid {
         grid-template-areas:
@@ -835,10 +835,39 @@ a {
 
     .profile-card {
         min-height: 400px;
+        padding: 2rem 1rem;
     }
 
     .bento-title {
         font-size: 3rem;
+        /* Ensure readability against dark BG */
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Navbar Mobile Fix */
+    .navbar {
+        padding: 1rem 0;
+        background: var(--glass-bg);
+        /* Always visible background on mobile */
+        backdrop-filter: blur(12px);
+    }
+
+    .nav-content {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .nav-links {
+        gap: 1.5rem;
+        font-size: 0.9rem;
+        flex-wrap: wrap;
+        /* Prevent overflow */
+        justify-content: center;
+    }
+
+    .social-icons {
+        display: none;
+        /* Hide on very small screens to save space */
     }
 }
 
