@@ -917,7 +917,7 @@ a {
 }
 
 /* Responsive Bento & Navbar */
-@media (max-width: 900px) {
+@media (max-width: 768px) {
     .bento-grid {
         grid-template-areas:
             "profile"
@@ -949,46 +949,45 @@ a {
     }
 
     .bento-actions .btn {
-        width: 100%;
-        text-align: center;
+        width: 100%text-align: center;
     }
 
     /* Navbar Mobile Fix - Compact Version */
     .navbar {
-        padding: 0.5rem 0;
-        background: var(--glass-bg);
-        backdrop-filter: blur(12px);
+        padding: 0.5rem 0 !important;
+        background: var(--glass-bg) !important;
+        backdrop-filter: blur(12px) !important;
     }
 
     .logo {
-        font-size: 1.1rem;
+        font-size: 1.1rem !important;
     }
 
     .nav-content {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0 1rem;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        gap: 0.5rem !important;
+        padding: 0 1rem !important;
     }
 
     .nav-links {
-        flex: 1;
-        gap: 0.8rem;
-        font-size: 0.85rem;
-        flex-wrap: nowrap;
-        justify-content: center;
-        margin: 0;
+        flex: 1 !important;
+        gap: 0.8rem !important;
+        font-size: 0.85rem !important;
+        flex-wrap: nowrap !important;
+        justify-content: center !important;
+        margin: 0 !important;
     }
 
     .social-icons {
-        display: flex;
-        gap: 0.6rem;
-        margin: 0;
+        display: flex !important;
+        gap: 0.6rem !important;
+        margin: 0 !important;
     }
 
     .social-icons i {
-        font-size: 1rem;
+        font-size: 1rem !important;
     }
 }
 
