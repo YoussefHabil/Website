@@ -1,0 +1,855 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --font-main: 'Outfit', sans-serif;
+    --font-display: 'Space Grotesk', sans-serif;
+
+    /* Theme Palette */
+    --bg-dark: #0a0a0a;
+    --bg-card: #171717;
+    --primary: #6d28d9;
+    --primary-glow: #8b5cf6;
+    --secondary: #ec4899;
+    --accent: #22d3ee;
+    --text-main: #fafafa;
+    --text-muted: #a3a3a3;
+
+    /* Glass Effect */
+    --glass-bg: rgba(23, 23, 23, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* --- 1. Custom Scrollbar --- */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-dark);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--text-muted);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
+}
+
+/* --- 2. Cinematic Grain Overlay --- */
+.grain-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* --- 3. Custom Cursor REMOVED --- */
+/* The user requested to remove the "Cursor Spot" */
+
+/* --- 4. Preloader --- */
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: var(--bg-dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    transition: opacity 0.5s ease-out, visibility 0.5s;
+}
+
+.preloader.fade-out {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader-content {
+    text-align: center;
+}
+
+.counter {
+    font-size: 8rem;
+    font-weight: 800;
+    font-family: var(--font-display);
+    color: var(--primary);
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* --- 5. Scroll Progress Bar --- */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    z-index: 10001;
+    transition: width 0.1s;
+}
+
+/* --- 6. Glitch Effect for Logo/Title --- */
+.glitch {
+    position: relative;
+    color: white;
+}
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-dark);
+}
+
+.glitch::before {
+    left: 2px;
+    text-shadow: -1px 0 #ff00c1;
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim-1 5s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+    left: -2px;
+    text-shadow: -1px 0 #00fff9;
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim-2 5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim-1 {
+    0% {
+        clip: rect(20px, 9999px, 10px, 0);
+    }
+
+    100% {
+        clip: rect(80px, 9999px, 90px, 0);
+    }
+}
+
+@keyframes glitch-anim-2 {
+    0% {
+        clip: rect(60px, 9999px, 50px, 0);
+    }
+
+    100% {
+        clip: rect(10px, 9999px, 120px, 0);
+    }
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-dark);
+    /* Fallback */
+    background-image:
+        radial-gradient(circle at 15% 50%, rgba(109, 40, 217, 0.15), transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(34, 211, 238, 0.15), transparent 25%);
+    color: var(--text-main);
+    font-family: var(--font-main);
+    overflow-x: hidden;
+    line-height: 1.6;
+    animation: bgPulse 10s ease-in-out infinite alternate;
+}
+
+/* Projects Grid */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+@media (min-width: 1024px) {
+    .projects-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.project-card {
+    background: rgba(23, 23, 23, 0.6);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px -10px rgba(109, 40, 217, 0.3);
+    border-color: var(--primary);
+}
+
+/* Spotlight Glow Effect */
+.bento-card::before,
+.project-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+            rgba(255, 255, 255, 0.06),
+            transparent 40%);
+    z-index: 3;
+    opacity: 0;
+    transition: opacity 0.5s;
+    pointer-events: none;
+}
+
+.bento-card:hover::before,
+.project-card:hover::before {
+    opacity: 1;
+}
+
+.project-img {
+    height: 180px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.project-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.project-card:hover .project-img img {
+    transform: scale(1.1);
+}
+
+.project-info {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.project-info h3 {
+    font-size: 1.25rem;
+    margin: 0.5rem 0;
+    color: var(--text-main);
+}
+
+@keyframes bgPulse {
+    0% {
+        background-position: 0% 0%;
+    }
+
+    100% {
+        background-position: 100% 100%;
+    }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-display);
+    font-weight: 700;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+}
+
+/* Badges for Hero & Projects */
+.badge {
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--glass-border);
+    border-radius: 30px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(109, 40, 217, 0.2);
+    border-radius: 4px;
+    font-size: 0.75rem;
+    color: var(--primary-glow);
+    margin-bottom: 0.5rem;
+    margin-right: 0.5rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* Timeline/Experience Styles */
+.experience {
+    padding: 4rem 0;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 2px;
+    height: 100%;
+    background: var(--glass-border);
+    transform: translateX(-50%);
+}
+
+.timeline-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4rem;
+    position: relative;
+}
+
+.timeline-item:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.timeline-date {
+    width: 45%;
+    text-align: right;
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.timeline-item:nth-child(even) .timeline-date {
+    text-align: left;
+}
+
+.timeline-content {
+    width: 45%;
+    padding: 2rem;
+    background: var(--bg-card);
+    border-radius: 12px;
+    border: 1px solid var(--glass-border);
+    position: relative;
+    transition: transform 0.3s;
+}
+
+.timeline-content:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary);
+}
+
+/* Timeline Dot */
+.timeline-content::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 16px;
+    height: 16px;
+    background: var(--primary);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--primary);
+}
+
+.timeline-item:nth-child(odd) .timeline-content::after {
+    right: -11.5%;
+    /* Adjust based on margin/width */
+    transform: translateY(-50%);
+}
+
+.timeline-item:nth-child(even) .timeline-content::after {
+    left: -11.5%;
+    transform: translateY(-50%);
+}
+
+@media (max-width: 768px) {
+    .timeline::before {
+        left: 40px;
+    }
+
+    .timeline-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .timeline-item:nth-child(even) {
+        flex-direction: column;
+    }
+
+    .timeline-date {
+        width: 100%;
+        text-align: left;
+        padding-left: 80px;
+    }
+
+    .timeline-content {
+        width: 100%;
+        margin-left: 80px;
+        width: calc(100% - 80px);
+    }
+
+    .timeline-item:nth-child(odd) .timeline-content::after,
+    .timeline-item:nth-child(even) .timeline-content::after {
+        left: -50px;
+    }
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, var(--primary-glow) 0%, var(--secondary) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1.5rem 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.navbar.scrolled {
+    padding: 1rem 0;
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.nav-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    font-family: var(--font-display);
+}
+
+.nav-links {
+    display: flex;
+    gap: 3rem;
+    list-style: none;
+}
+
+.nav-links a:hover {
+    color: var(--primary-glow);
+}
+
+.social-icons {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-icons i {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    transition: 0.3s;
+}
+
+.social-icons i:hover {
+    color: var(--primary);
+    transform: translateY(-3px);
+}
+
+/* Old Hero styles removed */
+
+/* --- BENTO HERO SECTION --- */
+.bento-section {
+    min-height: 100vh;
+    padding-top: 100px;
+    padding-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.project-card {
+    background: var(--bg-card);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--glass-border);
+    /* Ensure card doesn't expand excessively */
+    max-width: 100%;
+    position: relative;
+    transition: transform 0.3s;
+}
+
+.project-img {
+    height: 150px;
+    /* Reduced to 150px as requested */
+    background: #333;
+    position: relative;
+    overflow: hidden;
+}
+
+#bg-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    opacity: 0.8;
+}
+
+#bg-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    opacity: 0.8;
+}
+
+/* Old Blobs Removed */
+
+@keyframes floatOrb {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+}
+
+.bento-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 320px 240px;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 1200px;
+    grid-template-areas:
+        "profile tech product"
+        "profile location contact";
+}
+
+/* Bento Card Base */
+.bento-card {
+    background: rgba(23, 23, 23, 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.1s ease-out, box-shadow 0.3s ease;
+    cursor: default;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.bento-card:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* 1. Profile Card */
+.profile-card {
+    grid-area: profile;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: linear-gradient(145deg, rgba(23, 23, 23, 0.8) 0%, rgba(10, 10, 10, 0.9) 100%);
+}
+
+.card-content {
+    z-index: 2;
+}
+
+.sub-tag {
+    color: var(--secondary);
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.bento-title {
+    font-size: 4rem;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(to right, #fff, #a3a3a3);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.bento-subtitle {
+    font-size: 1.5rem;
+    color: var(--text-muted);
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+}
+
+.bento-desc {
+    color: #888;
+    margin-bottom: 2rem;
+    max-width: 90%;
+}
+
+.bento-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+/* 2. Tech Card */
+.tech-card {
+    grid-area: tech;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: linear-gradient(160deg, #1e1e1e 0%, #0a0a0a 100%);
+}
+
+.card-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    color: var(--primary-glow);
+}
+
+.tech-stack-visual {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.tech-badge {
+    background: rgba(109, 40, 217, 0.15);
+    color: #d8b4fe;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.visual-code code {
+    display: block;
+    margin-top: auto;
+    font-family: 'Fira Code', monospace;
+    opacity: 0.3;
+    font-size: 3rem;
+    position: absolute;
+    bottom: -10px;
+    right: 10px;
+    transform: rotate(-10deg);
+}
+
+/* 3. Product Card */
+.product-card {
+    grid-area: product;
+    position: relative;
+    overflow: hidden;
+}
+
+.product-visual {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    height: 100px;
+    margin-top: auto;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    opacity: 0.5;
+}
+
+.chart-bar {
+    flex: 1;
+    background: var(--accent);
+    border-radius: 4px 4px 0 0;
+    transition: height 0.5s;
+}
+
+.chart-bar.active {
+    background: var(--primary);
+    box-shadow: 0 0 20px var(--primary-glow);
+}
+
+/* 4. Location Card */
+.location-card {
+    grid-area: location;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.map-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23333' fill-opacity='0.2' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='1'/%3E%3C/g%3E%3C/svg%3E");
+    z-index: 0;
+}
+
+.location-pin {
+    width: 60px;
+    height: 60px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+    z-index: 2;
+}
+
+.pin-pulse {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: var(--primary);
+    opacity: 0.2;
+    animation: pinPulse 2s infinite;
+}
+
+@keyframes pinPulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+.location-pin i {
+    font-size: 1.5rem;
+    color: var(--text-main);
+    z-index: 3;
+}
+
+/* 5. Contact Card */
+.contact-card {
+    grid-area: contact;
+    display: flex;
+    flex-direction: row;
+    /* Horizontal on desktop */
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    cursor: pointer;
+}
+
+.contact-card .contact-text h3,
+.contact-card .contact-text p,
+.contact-card i {
+    color: white;
+}
+
+.contact-card .icon-box {
+    background: rgba(255, 255, 255, 0.2);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.copy-icon {
+    opacity: 0.7;
+    transition: 0.2s;
+}
+
+.contact-card:hover .copy-icon {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* Responsive Bento */
+@media (max-width: 900px) {
+    .bento-grid {
+        grid-template-areas:
+            "profile"
+            "tech"
+            "product"
+            "location"
+            "contact";
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+    }
+
+    .profile-card {
+        min-height: 400px;
+    }
+
+    .bento-title {
+        font-size: 3rem;
+    }
+}
+
+/* Contact */
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    padding: 1rem;
+    border-radius: 8px;
+    color: white;
+    margin-bottom: 1rem;
+}
