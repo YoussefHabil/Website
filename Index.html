@@ -1,66 +1,289 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="Style.css">
-    <title>Youssef's Website</title>
+    <title>Youssef | Software Engineer</title>
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Main Style -->
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <header>
-        <a href="#" class="logo"> Youssef </a>
-        <nav class="navigation">
-            <a href="#services">Services</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    </header>
-    <section class="main">
-        <h2>Hello, this is Youssef<br><span>Software Engineer</span></h2>
-        <h3>Expert in building Websites</h3>
-        <a href="#projects" class="main-button">let's take a look!</a>
-        <div class="social-media-icons">
-            <a href="https://www.linkedin.com/feed/"><i class="fa-brands fa-linkedin fa-beat-fade"></i></a>
-            <a href="https://www.facebook.com/"><i class="fa-brands fa-facebook fa-beat-fade"></i></a>
-            <a href="https://github.com/YoussefHabil"><i class="fa-brands fa-github fa-beat-fade"></i></a>
+    <!-- Custom Cursor REMOVED as requested -->
+
+    <!-- 0. Cinematic Grain Overlay -->
+    <div class="grain-overlay"></div>
+
+    <!-- 2. Preloader -->
+    <div class="preloader">
+        <div class="loader-content">
+            <div class="counter">0</div>
+        </div>
+    </div>
+
+    <!-- 3. Scroll Progress -->
+    <div class="scroll-progress"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="#" class="logo">&lt;Youssef /&gt;</a>
+            <ul class="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="social-icons">
+                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#"><i class="fa-brands fa-github"></i></a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Global Background Canvas -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Bento Hero Section -->
+    <section id="home" class="bento-section">
+        <!-- Canvas moved to global -->
+        <!-- div class="blob-bg" removed -->
+        <div class="container bento-grid">
+
+            <!-- Card 1: Profile Main -->
+            <div class="bento-card profile-card" data-tilt>
+                <div class="card-content">
+                    <span class="sub-tag">HELLO, I AM</span>
+                    <h1 class="bento-title">Youssef <span class="gradient-text">Habil</span></h1>
+                    <p class="bento-subtitle">A Developer Dedicated to building</p>
+                    <h2 style="font-size: 3rem; line-height:1; margin-bottom: 2rem;">
+                        <span id="dynamic-text"
+                            style="color:white; font-weight:800; display:inline-block; min-width:300px;">Scalable</span><br>
+                        <span style="color:var(--text-muted); font-weight:400; font-size: 2rem;">Websites &
+                            Applications</span>
+                    </h2>
+                    <div class="bento-actions">
+                        <a href="#projects" class="btn btn-primary">My Work</a>
+                        <a href="#experience" class="btn btn-outline">Experience</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2: Engineering (The Coder) -->
+            <div class="bento-card tech-card" data-tilt>
+                <div class="card-icon"><i class="fa-solid fa-code"></i></div>
+                <h3>Engineering</h3>
+                <div class="tech-stack-visual">
+                    <span class="tech-badge">.NET Core</span>
+                    <span class="tech-badge">MERN</span>
+                    <span class="tech-badge">SQL</span>
+                    <span class="tech-badge">Flutter</span>
+                </div>
+                <div class="visual-code">
+                    <code>&lt;Coder /&gt;</code>
+                </div>
+            </div>
+
+            <!-- Card 3: Product (The Manager) -->
+            <div class="bento-card product-card" data-tilt>
+                <div class="card-icon"><i class="fa-solid fa-lightbulb"></i></div>
+                <h3>Product Owner</h3>
+                <p class="sm-text">Inklusive (Fintech)</p>
+                <div class="product-visual">
+                    <div class="chart-bar" style="height: 60%"></div>
+                    <div class="chart-bar" style="height: 80%"></div>
+                    <div class="chart-bar" style="height: 40%"></div>
+                    <div class="chart-bar active" style="height: 100%"></div>
+                </div>
+            </div>
+
+            <!-- Card 4: Location -->
+            <div class="bento-card location-card" data-tilt>
+                <div class="map-bg"></div>
+                <div class="location-pin">
+                    <div class="pin-pulse"></div>
+                    <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <h3>Based in Egypt</h3>
+                <p class="sm-text">Available for Remote Work</p>
+            </div>
+
+            <!-- Card 5: Contact / Email -->
+            <div class="bento-card contact-card" data-tilt onclick="copyEmail()">
+                <div class="icon-box">
+                    <i class="fa-regular fa-envelope"></i>
+                </div>
+                <div class="contact-text">
+                    <h3>Get in Touch</h3>
+                    <p id="email-text">youssefhabil711@gmail.com</p>
+                </div>
+                <i class="fa-regular fa-copy copy-icon"></i>
+            </div>
+
         </div>
     </section>
 
-    <section class="Cards" id="servieces"> 
-        <h2 class="title">Services</h2>
-        <div class="content">
-            <div class="card">
-                  <div class="Icon">
-                    <i class="fa-solid fa-video fa-bounce"></i>
-                  </div>
-                  <div class="Info">
-                    <h3>Montage</h3>
-                    <p>Passionate video editor with a keen eye for storytelling and a knack for creating visually stunning montages that bring your moments to life. Elevate your content with seamless edits and cinematic flair.</p>
-                  </div>
+    <!-- Experience Section (New) -->
+    <section id="experience" class="experience">
+        <div class="container">
+            <div class="section-header">
+                <h2>Work <span class="gradient-text">Experience</span></h2>
             </div>
-            <div class="card">
-                <div class="Icon">
-                    <i class="fa-solid fa-laptop-code fa-bounce"></i>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">2024 - Present</div>
+                    <div class="timeline-content glass-panel">
+                        <h3>Backend Engineer (Fintech)</h3>
+                        <h4>Abgad</h4>
+                        <p>Implemented RESTful APIs using .NET Core and Entity Framework. Integrated CIB payment gateway
+                            with secure transaction flow. Handled user management and transactional logic.</p>
+                    </div>
                 </div>
-                <div class="Info">
-                  <h3>web Development</h3>
-                  <p>Experienced web developer showcasing not just skills, but a proven track record – this very website is a testament to my dedication and expertise. Let's elevate your online presence together, leveraging my hands-on experience and commitment to crafting impactful websites.</p>
-          </div>
-          
-        </div> 
-        <div class="card">
-            <div class="Icon">
-                <i class="fa-solid fa-wand-magic-sparkles fa-bounce"></i>
+                <div class="timeline-item">
+                    <div class="timeline-date">2024 - Present</div>
+                    <div class="timeline-content glass-panel">
+                        <h3>Backend Engineer</h3>
+                        <h4>Inklusive</h4>
+                        <p>Developed scalable backend services for Inklusive, a talent hiring platform similar to
+                            LinkedIn that connects clients with top talent.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Project Based</div>
+                    <div class="timeline-content glass-panel">
+                        <h3>Product Owner (ELCASH)</h3>
+                        <h4>Inklusive</h4>
+                        <p>Led the end-to-end product discovery for "ELCASH", a Fintech solution for managing money
+                            circles (ROSCA) in the Bahamas and Mexico. Started the product from scratch, defining all
+                            epics and user stories.</p>
+                    </div>
+                </div>
             </div>
-            <div class="Info">
-              <h3>Graphic Design</h3>
-              <p>Creative graphic designer weaving visual stories with a passion for transforming concepts into compelling designs. Elevate your brand with my unique blend of artistic flair, attention to detail, and a proven portfolio that speaks volumes. Let's bring your vision to life through captivating visuals.</p>
-      </div>
-      
-    </div> 
-        
+        </div>
     </section>
+
+    <!-- Projects -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <div class="section-header">
+                <h2>Featured <span class="gradient-text">Projects</span></h2>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="https://images.unsplash.com/photo-1550989460-0adf9ea622e2?w=800&q=80"
+                            alt="Hydroponics">
+                    </div>
+                    <div class="project-info">
+                        <span class="tag">Flutter</span> <span class="tag">IoT</span>
+                        <h3>Smart Hydroponics</h3>
+                        <p style="font-size: 0.9rem; color: var(--text-muted);">Mobile app for monitoring and automating
+                            a smart hydroponic farming system.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img">
+                        <!-- Placeholder specific for E-commerce -->
+                        <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=800&q=80"
+                            alt="E-Commerce">
+                    </div>
+                    <div class="project-info">
+                        <span class="tag">MERN Stack</span> <span class="tag">Paymob</span>
+                        <h3>E-Commerce Platform</h3>
+                        <p style="font-size: 0.9rem; color: var(--text-muted);">Full-stack clothing store with product
+                            catalog, cart, and Paymob payment integration.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=800&q=80"
+                            alt="Movie App">
+                    </div>
+                    <div class="project-info">
+                        <span class="tag">.NET</span> <span class="tag">MongoDB</span>
+                        <h3>Movie Booking App</h3>
+                        <p style="font-size: 0.9rem; color: var(--text-muted);">Backend system for cinema seat booking
+                            with secure APIs and user authentication.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="https://images.unsplash.com/photo-1555099962-4199c345e5dd?w=800&q=80" alt="Database">
+                    </div>
+                    <div class="project-info">
+                        <span class="tag">SQL</span> <span class="tag">Database Design</span>
+                        <h3>Airline DB System</h3>
+                        <p style="font-size: 0.9rem; color: var(--text-muted);">Normalized relational database with
+                            complex indexing and reservation queries.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&q=80"
+                            alt="Testing">
+                    </div>
+                    <div class="project-info">
+                        <span class="tag">Java</span> <span class="tag">Selenium</span>
+                        <h3>Automated Testing Suite</h3>
+                        <p style="font-size: 0.9rem; color: var(--text-muted);">Software testing project using JUnit and
+                            Selenium for automated UI validation.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section (Replaces generic Services) -->
+    <section id="skills" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Technical <span class="gradient-text">Skills</span></h2>
+            </div>
+            <div class="services-grid">
+                <div class="card">
+                    <i class="fa-brands fa-microsoft"></i>
+                    <h3>.NET & Backend</h3>
+                    <p style="color: var(--text-muted);">Interim .NET Core, C#, Entity Framework, REST APIs,
+                        Microservices Architecture.</p>
+                </div>
+                <div class="card">
+                    <i class="fa-brands fa-react"></i>
+                    <h3>Frontend & MERN</h3>
+                    <p style="color: var(--text-muted);">React.js, JavaScript, Node.js, Express, HTML5/CSS3, Responsive
+                        Design.</p>
+                </div>
+                <div class="card">
+                    <i class="fa-solid fa-database"></i>
+                    <h3>Data & Tools</h3>
+                    <p style="color: var(--text-muted);">SQL Server, MongoDB, Git, Agile/Scrum, Product Management.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" style="padding: 8rem 0;">
+        <div class="container" style="max-width: 600px;">
+            <div class="section-header">
+                <h2>Get In <span class="gradient-text">Touch</span></h2>
+            </div>
+            <form class="contact-form">
+                <input type="text" placeholder="Name">
+                <input type="email" placeholder="Email">
+                <textarea rows="5" placeholder="Message"></textarea>
+                <button class="btn btn-primary" style="width:100%">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer
+        style="text-align: center; padding: 2rem; color: var(--text-muted); border-top: 1px solid var(--glass-border);">
+        <p>&copy; 2024 Youssef. All rights reserved.</p>
+    </footer>
+
+    <script src="main.js"></script>
 </body>
+
 </html>
